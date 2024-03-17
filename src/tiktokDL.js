@@ -15,13 +15,15 @@ export const tiktokDL = async url => {
             count: 12,
             cursor: 0,
             web: 1,
-            hd: 1
+            hd: 1,
+            // Add parameter to specify you want audio
+            audio: 1
         }
-    })
+    });
 
     return {
         nowm: domain+res.data.data.play, 
         wm: domain+res.data.data.wmplay, 
         music: domain+res.data.data.music, 
-    }
-}
+    };
+};
