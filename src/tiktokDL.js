@@ -16,8 +16,6 @@ export const tiktokDL = async url => {
             cursor: 0,
             web: 1,
             hd: 1,
-            // Add parameter to specify you want audio
-            audio: 1
         }
     });
 
