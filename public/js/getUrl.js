@@ -9,9 +9,9 @@ export const getUrl = async (url) => {
         body: JSON.stringify({ videoUrl: url})
     });
 
-    let { nowm, wm, music } = await res.json();
+    let { nowm, wm, music, description } = await res.json();
     
-    // Generate HTML for video player, audio download button, and video download button
+    // Generate HTML for video player, audio download button, video download button, and video description
     let audioButton = `<a href="${music}" target="_blank" class="btn">Download Audio</a>`;
     let videoPlayer = `
         <video controls autoplay name="media">
@@ -19,18 +19,9 @@ export const getUrl = async (url) => {
             Your browser does not support the video tag.
         </video>
     `;
-    let videoButton = `<button onclick="downloadVideo('${nowm}')" class="btn">Download Video</button>`;
+    let videoButton = `<a href="${nowm}" download class="btn">Download Video</a>`;
+    let videoDescription = `<p>${description}</p>`;
 
     // Set the content of the 'content' element
-    content.innerHTML = `${audioButton} ${videoButton} ${videoPlayer}`;
+    content.innerHTML = `${audioButton} ${videoButton} ${videoPlayer} ${videoDescription}`;
 };
-
-// Function to trigger automatic download of video
-function downloadVideo(videoUrl) {
-    let a = document.createElement('a');
-    a.href = videoUrl;
-    a.download = 'video.mp4';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
