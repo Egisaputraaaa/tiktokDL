@@ -7,18 +7,20 @@ export const getUrl = async (url) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ videoUrl: url})
-    })
+    });
 
-    let {nowm, wm, music} = await res.json();
+    let { nowm, wm, music } = await res.json();
     
-    // agregamos la etiqueta video...
-    let buttons = `
-        <a href="${music}" target='_blank' class='btn'>download audio</a>
-    `;
-    let video = `
-        <video controls="" autoplay="" name="media">
-            <source src="${nowm}" type="video/mp4"></source>
+    // Generate HTML for video player, audio download button, and video download button
+    let audioButton = `<a href="${music}" target="_blank" class="btn">Download Audio</a>`;
+    let videoPlayer = `
+        <video controls autoplay name="media">
+            <source src="${nowm}" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
     `;
-    content.innerHTML = `${buttons} ${video}`;
-}
+    let videoButton = `<a href="${nowm}" download class="btn">Download Video</a>`;
+
+    // Set the content of the 'content' element
+    content.innerHTML = `${audioButton} ${videoButton} ${videoPlayer}`;
+};
