@@ -1,4 +1,4 @@
-mport { disabledButton } from "./disabledButton.js";
+import { disabledButton } from "./disabledButton.js";
 import { getUrl } from "./getUrl.js";
 
 let app = document.getElementById('app');
@@ -15,7 +15,7 @@ form.addEventListener('submit', e => {
     let url = e.target.url.value; // get value of input
     let domain = url.split('/')[2]; // get domain
 
-    if(domain === 'www.tiktok.com' || domain === 'vm.tiktok.com', 'vt.tiktok.com'){
+    if(domain === 'www.tiktok.com' || domain === 'vm.tiktok.com'){
         getUrl(url); // get data video
     }else{
         content.innerHTML = '<h3 class="messageError">Error, The url is not a tiktok link!</h3>'
